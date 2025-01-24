@@ -5,7 +5,9 @@ import { doctors } from "../assets/assets"
 const Doctor = () => {
 
   const {specialty} = useParams()
+  
   const [filterDoc,setFilterDoc] = useState([])
+  const [showFilter,setShowFilter] = useState(false)
   const navigate = useNavigate()
 
   const applyFilter = () => {
@@ -24,6 +26,9 @@ const Doctor = () => {
     <div>
       <p  className="text-gray-600">Check for your Specialist</p >
       <div className="flex flex-col sm:flex-row items-start gap-5 mt-5">
+
+        <button className="py-1 hover:bg-indigo-500 hover:text-white transition-all duration-500 px-4 rounded-full shadow-sm text-sm border border-gray-300 " onClick={()=>{prev => !prev}}>Filter</button>
+
         <div className="flex flex-col text-sm gap-4 text-gray-600">
           <p onClick={()=> specialty === 'General physician' ? navigate('/doctors') : navigate('/doctors/General physician')} className={`w-[94vw] shadow-sm sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${specialty === 'General physician' ? 'bg-indigo-500 text-white font-semibold' : ''}`}>General physician</p >
           <p onClick={()=> specialty === 'Gynecologist' ? navigate('/doctors') : navigate('/doctors/Gynecologist')} className={`w-[94vw] shadow-sm sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${specialty === 'Gynecologist' ? 'bg-indigo-500 text-white font-semibold' : ''}`}>Gynecologist</p >
