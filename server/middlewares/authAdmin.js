@@ -2,11 +2,14 @@ import jwt from 'jsonwebtoken';
 
 export const authAdmin = (req,res,next) => {
     try {
-        const {adminToken} = req.headers;
-        if(!adminToken) return res.status(401).json
+        const { admintoken } = req.headers;
+        console.log(admintoken);
+        
+        
+        if(!admintoken) return res.status(401).json
         ({ success:false, message:"Access denied due to invalid token" });
 
-        const decoded = jwt.verify(adminToken, process.env.JWT_SECRET);
+        const decoded = jwt.verify(admintoken, process.env.JWT_SECRET);
         if(decoded.email !== process.env.ADMIN_EMAIL) return res.status(401).json
         ({ success:false, message:"Access denied" });
         
